@@ -1,0 +1,23 @@
+---
+- name: our first play
+  hosts: planetexpress
+  gather_facts: True
+  connection: ansible.builtin.ssh
+
+
+  tasks:
+
+    - name: Install steam locomotive on CentOS machine
+      ansible.builtin.yum:
+        name: sl
+        state: present
+      become: yes
+      when: ansible_distribution == "CentOS"
+
+
+    - name: Install stem locomotive on Ubuntu machines
+      ansible.builtin.apt:
+        name: sl
+      become: yes
+      when: ansible_distribution == "Ubuntu"
+

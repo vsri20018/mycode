@@ -1,0 +1,6 @@
+cd ~/mycode
+git status
+git add /home/student/mycode/*
+git commit -m "Using yum module"
+git push origin
+cd ~/
