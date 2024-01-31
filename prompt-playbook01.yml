@@ -1,0 +1,20 @@
+---
+- name:
+  hosts: localhost
+  gather_facts: no
+
+
+  vars_prompt:
+    - name: "yourpassword"
+      prompt: "what is your password"
+      private: True
+      encrypt: "sha512_crypt"
+      confirm: yes
+      salt_size: 7
+      default: "qwerty"
+
+
+  tasks:
+    - name: Print out the password
+      debug:
+        msg: "{{ yourpassword }}"
