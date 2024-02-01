@@ -1,0 +1,46 @@
+---
+- name: Advanced playbook Architecture
+  hosts: ghosthouse
+  gather_facts: yes
+
+  pre_tasks:
+
+  roles: 
+          - bootstrap
+          - bootstrap
+
+
+
+
+          - webserver
+
+  tasks:
+    - name: Print to the screen
+      debug:
+            msg: "example of a task within the task section"
+
+
+
+    - import_role:
+            name: nginx
+
+    - include_role:
+            name: webserver-db-{{ webserverhostname | lower }}
+
+
+      post_tasks
+
+      handlers:
+
+
+      --- 
+      - name: A second play
+        hosts: all
+        gather_facts: yes
+
+
+        tasks:
+          - name: Print to the screen 
+            debug: 
+                   msg: "This is  separate play, but think of it almost like run 
+
